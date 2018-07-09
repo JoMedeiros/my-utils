@@ -1,0 +1,97 @@
+#!/usr/bin/env python
+
+import os
+
+# Directories
+os.makedirs('bin')
+os.makedirs('build')
+os.makedirs('include')
+os.makedirs('src')
+
+# Files
+## gitignore
+with open('.gitignore', 'w') as f:
+    f.write('bin/*\nbuild/*\ndoc/*\n')
+
+## main.cpp
+with open('src/main.cpp', 'w') as f:
+    f.write('#include <iostream>' +
+            '\n\nint main()\n{\n\t/* Place your code here */\n' +
+            'std::cout << "Hello World" << std::endl;' +
+            '\treturn 0;\n}\n')
+
+## Makefile
+with open('Makefile', 'w') as f:
+    f.write(
+        'CC = g++' +
+        '\nPROG = myApp' +
+        '\nCPPFLAGS = -Wall -pedantic -ansi -std=c++14' +
+        '\nRM = rm -rf' +
+        '\nOBJS = bst.o' +
+        '\n' +
+        '\n# Diretórios' +
+        '\nLIB_DIR=./lib' +
+        '\nINC_DIR=./include' +
+        '\nSRC_DIR=./src' +
+        '\nOBJ_DIR=./build' +
+        '\nBIN_DIR=./bin' +
+        '\nDOC_DIR=./doc' +
+        '\nTEST_DIR=./test' +
+        '\n' +
+        '\n# Alvos' +
+        '\n.PHONY: $(PROG) all dir run clean doxy valgrindSimple valgrindFull lintComplete lint test' +
+        '\n' +
+        '\nall: dir $(PROG)' +
+        '\n' +
+        '\ndebug: CPPFLAGS += -g -O0' +
+        '\ndebug: $(PROG)' +
+        '\n' +
+        '\n$(PROG): $(OBJ_DIR)/main.o' +
+        '\n	@echo "============="' +
+        '\n	@echo "Linking target $@"' +
+        '\n	$(CC) $(CPPFLAGS) -I$(INC_DIR) -o $(BIN_DIR)/$@ $^' +
+        '\n	@echo "============="' +
+        '\n	@echo "+++ [Executable file $(PROG) generated in $(BIN_DIR)] folder +++"' +
+        '\n	@echo "============="' +
+        '\n' +
+        '\n$(OBJ_DIR)/main.o: $(SRC_DIR)/main.cpp' +
+        '\n	$(CC) -c $(CPPFLAGS) -I$(INC_DIR) -o $@ $<' +
+        '\n' +
+        '\ndir:' +
+        '\n	mkdir -p bin build doc' +
+        '\n' +
+        '\nrun:' +
+        '\n	$(BIN_DIR)/$(PROG) -a data/valoresArvore.txt -i data/comandos.txt' +
+        '\n' +
+        '\nclean: dir' +
+        '\n	$(RM) $(BIN_DIR)/*' +
+        '\n	$(RM) $(OBJ_DIR)/*.o' +
+        '\n	$(RM) $(DOC_DIR)/*' +
+        '\n' +
+        '\ndoxy:' +
+        '\n	$(RM) $(DOC_DIR)/*' +
+        '\n	doxygen Doxyfile' +
+        '\n' +
+        '\nvalgrindSimple:' +
+        '\n	valgrind -v --leak-check=full --show-reachable=yes $(BIN_DIR)/$(PROG)' +
+        '\n' +
+        '\nvalgrindFull:' +
+        '\n	valgrind -v --leak-check=full --show-reachable=yes --track-origins=yes $(BIN_DIR)/$(PROG)' +
+        '\n' +
+        '\nlintComplete:' +
+        '\n	python2 cpplint.py --extensions=h, hpp, cpp, inl $(t)' +
+        '\n' +
+        '\nlint:' +
+        '\n	python2 cpplint.py --filter=-runtime/references,-whitespace/line_length --extensions=h, hpp, cpp, inl $(t)' +
+        '\n' +
+        '\ntest: CPPFLAGS += -g -O0' +
+        '\ntest: $(OBJ_DIR)/test.o $(OBJ_DIR)/ABB.o' +
+        '\n	@echo "============="' +
+        '\n	@echo "Linking target $@"' +
+        '\n	$(CC) $(CPPFLAGS) -I$(INC_DIR) -o $(BIN_DIR)/$@ $^' +
+        '\n	@echo "============="' +
+        '\n	@echo "+++ [Executable file test generated in $(BIN_DIR)] folder +++"' +
+        '\n	@echo "============="' +
+        '\n' +
+        '\n$(OBJ_DIR)/test.o: $(SRC_DIR)/test.cpp' +
+        '\n\t$(CC) -c $(CPPFLAGS) -I$(INC_DIR) -o $@ $<')
