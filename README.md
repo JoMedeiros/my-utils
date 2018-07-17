@@ -30,3 +30,7 @@ You can see the arguments needed typing:
 Here's an example of usage:
 
 `./vid_to_gif -i <input_file> -o <output_name> -s <time_of_start> -d <duration> -w <output_width>`
+
+#### More about gif conversion
+
+- http://blog.pkh.me/p/21-high-quality-gif-with-ffmpeg.html
