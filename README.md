@@ -17,9 +17,9 @@ This is a script to convert a video to gif using mmpeg. This is just a more frie
 
 ### Requirements
 
-Since this is not a complete tool (this is just another cli for mmpeg) you need to install mmpeg. On Debian/Ubuntu:
+Since this is not a complete tool (this is just another cli for mmpeg) you need to install ffmpeg. On Debian/Ubuntu:
 
-`sudo apt install mmpeg`
+`sudo apt install ffmpeg`
 
 ### Usage
 
