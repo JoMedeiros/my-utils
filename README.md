@@ -2,6 +2,10 @@
 
 This is a directory to put my scripts.
 
+## Some Vim config and tips 
+
+<img src="vi-vim-cheat-sheet.gif">
+
 ## init_cpp
 
 This python script creates my favorite structure of files and a default Makefile.
