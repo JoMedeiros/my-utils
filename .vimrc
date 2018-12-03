@@ -1,10 +1,12 @@
 set autoindent
 set cindent
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 set number
 set relativenumber
+set foldmethod=indent
+set foldlevel=20
 
 "Turn off expandtab for editing makefiles
 autocmd FileType make setlocal noexpandtab
@@ -17,9 +19,11 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree'
 Plug 'Valloric/YouCompleteMe'
+"" Color Themes
 Plug 'sjl/badwolf'
 Plug 'chriskempson/base16-vim'
 Plug 'srcery-colors/srcery-vim'
+Plug 'TroyFletcher/vim-colors-synthwave'
 
 call plug#end()
 
@@ -41,4 +45,6 @@ call plug#end()
 ""color wonka-dark
 ""color wonka-light
 ""color farout
-color base16-ashes
+"color base16-ashes
+color synthwave
+
