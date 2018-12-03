@@ -7,6 +7,7 @@ set number
 set relativenumber
 set foldmethod=indent
 set foldlevel=20
+autocmd vimenter * NERDTree
 
 "Turn off expandtab for editing makefiles
 autocmd FileType make setlocal noexpandtab
@@ -19,6 +20,8 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree'
 Plug 'Valloric/YouCompleteMe'
+Plug 'vim-airline/vim-airline'
+Plug 'majutsushi/tagbar'
 "" Color Themes
 Plug 'sjl/badwolf'
 Plug 'chriskempson/base16-vim'
