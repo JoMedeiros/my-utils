@@ -8,7 +8,6 @@ set relativenumber
 set foldmethod=indent
 set foldlevel=20
 set noshowmode
-"autocmd vimenter * NERDTree
 
 syntax on
 set termguicolors
@@ -27,31 +26,32 @@ Plug 'majutsushi/tagbar'
 " Color Themes
 Plug 'sjl/badwolf'
 Plug 'chriskempson/base16-vim'
+Plug 'dracula/vim', {'as':'dracula'}
 Plug 'srcery-colors/srcery-vim'
+Plug 'lu-ren/SerialExperimentsLain'
 Plug 'TroyFletcher/vim-colors-synthwave'
 " Airline Color Themes
 Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
-"color nachtleben
 "color fromthehell
-"color blue-mood
 """"""color srcery
-color synthwave
+""""""color synthwave
 "color relaxedgreen
 "color atlantic-dark
-"color frign
 "color colibri
 "color material-monokai
 "color tomatosoup
-"""""color dante
 "color macvim-light
 """color SerialExperimentsLain
 """""color neuromancer
 ""color wonka-dark
 ""color wonka-light
 ""color farout
+color base16-dracula
+"let g:airline_theme='kolor'
+let g:airline_theme='base16'
 
 "Turn off expandtab for editing makefiles
 autocmd FileType make setlocal noexpandtab
@@ -93,8 +93,6 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
-let g:airline_theme='kolor'
-
 " Shortcuts
 " Vim tab navigation
 nnoremap th  :tabfirst<CR>
@@ -102,7 +100,7 @@ nnoremap tk  :tabnext<CR>
 nnoremap tj  :tabprev<CR>
 nnoremap tl  :tablast<CR>
 nnoremap tt  :tabedit<Space>
-nnoremap tn  :tabnext<Space>
+nnoremap tn  :tabnew<Space>
 nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
 " Alternatively use
@@ -112,4 +110,9 @@ nnoremap td  :tabclose<CR>
 
 " NERDTree
 nnoremap TT :NERDTreeToggle<CR>
+
+" disable preview window for YCM
+set completeopt-=preview
+" enable matching html tags
+runtime macros/matchit.vim
 
