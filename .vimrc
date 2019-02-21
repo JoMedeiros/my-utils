@@ -18,7 +18,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'Valloric/YouCompleteMe'
 Plug 'itchyny/lightline.vim'
-Plug 'itchyny/lightline.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
 Plug 'powerline/fonts'
@@ -38,18 +37,9 @@ call plug#end()
 "color fromthehell
 """"""color srcery
 """"""color synthwave
-"color relaxedgreen
-"color atlantic-dark
-"color colibri
-"color material-monokai
-"color tomatosoup
-"color macvim-light
-"""color SerialExperimentsLain
+color SerialExperimentsLain
 """""color neuromancer
-""color wonka-dark
-""color wonka-light
-""color farout
-color base16-dracula
+"color base16-dracula
 "let g:airline_theme='kolor'
 let g:airline_theme='base16'
 
