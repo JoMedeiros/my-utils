@@ -1,6 +1,11 @@
 # My Utils
 
-This is a directory to put my scripts.
+This is a directory to put my scripts and configurations.
+
+## My vim Config
+
+If you run `setup-vim.sh` as you may guess, it will setup my vim configurations.
+It will download my `.vimrc`, install the powerline fonts and YouCompleteMe.
 
 ## Some Vim config and tips 
 
