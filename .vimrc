@@ -37,9 +37,9 @@ call plug#end()
 "color fromthehell
 """"""color srcery
 """"""color synthwave
-color SerialExperimentsLain
-"""""color neuromancer
+"color SerialExperimentsLain
 "color base16-dracula
+color badwolf
 "let g:airline_theme='kolor'
 let g:airline_theme='base16'
 
