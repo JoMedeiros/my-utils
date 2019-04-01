@@ -6,6 +6,6 @@ mkdir -p ~/.vim/autoload
 wget -P ~/.vim/autoload https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 # Run the scripts
 vim +'PlugInstall --sync' +qa
-~/.vim/plugged/YouCompleteMe/install.sh
+~/.vim/plugged/YouCompleteMe/install.py --clang-completer
 ~/.vim/plugged/fonts/install.sh
 
