@@ -17,7 +17,8 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree'
 Plug 'Valloric/YouCompleteMe'
-Plug 'vim-syntastic/syntastic'
+"Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
 Plug 'itchyny/lightline.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
@@ -35,11 +36,6 @@ Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
-"color fromthehell
-""""""color srcery
-""""""color synthwave
-"color SerialExperimentsLain
-"color base16-dracula
 color badwolf
 "let g:airline_theme='kolor'
 let g:airline_theme='base16'
@@ -107,13 +103,5 @@ set completeopt-=preview
 " enable matching html tags
 runtime macros/matchit.vim
 
-" Syntastic settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
- 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_cpp_checkers = ['GCC']
+" Ale settings
+let g:airline#extensions#ale#enabled = 1
