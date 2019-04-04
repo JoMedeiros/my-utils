@@ -11,6 +11,8 @@ set noshowmode
 
 syntax on
 set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 """ Vim Plugs """
 call plug#begin('~/.vim/plugged')
@@ -25,20 +27,40 @@ Plug 'tpope/vim-fugitive'
 Plug 'powerline/fonts'
 Plug 'majutsushi/tagbar'
 " Color Themes
-Plug 'sjl/badwolf'
-Plug 'chriskempson/base16-vim'
-Plug 'dracula/vim', {'as':'dracula'}
-Plug 'srcery-colors/srcery-vim'
-Plug 'lu-ren/SerialExperimentsLain'
-Plug 'TroyFletcher/vim-colors-synthwave'
+Plug 'nightsense/cosmic_latte'
+"Plug 'sjl/badwolf'
+"Plug 'chriskempson/base16-vim'
+"Plug 'dracula/vim', {'as':'dracula'}
+"Plug 'srcery-colors/srcery-vim'
+"Plug 'lu-ren/SerialExperimentsLain'
+"Plug 'TroyFletcher/vim-colors-synthwave'
+
 " Airline Color Themes
 Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
-color badwolf
+set background=dark
+colorscheme cosmic_latte
+let g:airline_theme='cosmic_latte_dark'
+" Cursor shape
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
+
+"if strftime('%H') >= 7 && strftime('%H') < 18
+"  set background=light
+"  let g:airline_theme='cosmic_latte_light'
+"  let g:lightline = { 'colorscheme': 'cosmic_latte_light' }
+"else
+"  set background=dark
+"  let g:airline_theme='cosmic_latte_dark'
+"endif
+"colorscheme cosmic_latte
+
+"color badwolf
 "let g:airline_theme='kolor'
-let g:airline_theme='base16'
+"let g:airline_theme='base16'
 
 "Turn off expandtab for editing makefiles
 autocmd FileType make setlocal noexpandtab
