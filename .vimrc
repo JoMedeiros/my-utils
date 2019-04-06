@@ -19,8 +19,8 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree'
 Plug 'Valloric/YouCompleteMe'
-"Plug 'vim-syntastic/syntastic'
 Plug 'w0rp/ale'
+Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'itchyny/lightline.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
@@ -127,3 +127,11 @@ runtime macros/matchit.vim
 
 " Ale settings
 let g:airline#extensions#ale#enabled = 1
+
+" vim-cpp-enhanced-highlight settings
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_experimental_template_highlight = 1
+let c_no_curly_error=1
+

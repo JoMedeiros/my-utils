@@ -4,21 +4,12 @@ This is a directory to put my scripts and configurations.
 
 ## My vim Config
 
-If you run `setup-vim.sh` as you may guess, it will setup my vim configurations.
+If you run `vi.sh` it will setup my vim configurations.
 It will download my `.vimrc`, install the powerline fonts and YouCompleteMe.
 
 ## Some Vim config and tips 
 
 <img src="vi-vim-cheat-sheet.gif">
-
-## init_cpp
-
-This python script creates my favorite structure of files and a default Makefile.
-
-### Usage
-
-In a linux terminal type:
-	`./init_cpp`
 
 ## vid_to_gif
 
