@@ -8,11 +8,12 @@ set relativenumber
 set foldmethod=indent
 set foldlevel=20
 set noshowmode
+set laststatus=2
 
 syntax on
 set termguicolors
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+"let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+"let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 """ Vim Plugs """
 call plug#begin('~/.vim/plugged')
@@ -20,29 +21,28 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'Valloric/YouCompleteMe'
 Plug 'w0rp/ale'
-Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'itchyny/lightline.vim'
-Plug 'vim-airline/vim-airline'
+Plug 'maximbaz/lightline-ale'
 Plug 'tpope/vim-fugitive'
 Plug 'powerline/fonts'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-easytags'
 Plug 'majutsushi/tagbar'
+" lh plugins
+Plug 'LucHermitte/lh-vim-lib'
+Plug 'LucHermitte/lh-style'
+Plug 'LucHermitte/lh-brackets'
+Plug 'LucHermitte/mu-template'
+Plug 'LucHermitte/lh-dev'
+Plug 'LucHermitte/alternate-lite'
+Plug 'luchermitte/lh-cpp'
 " Color Themes
 Plug 'nightsense/cosmic_latte'
-"Plug 'sjl/badwolf'
-"Plug 'chriskempson/base16-vim'
-"Plug 'dracula/vim', {'as':'dracula'}
-"Plug 'srcery-colors/srcery-vim'
-"Plug 'lu-ren/SerialExperimentsLain'
-"Plug 'TroyFletcher/vim-colors-synthwave'
-
-" Airline Color Themes
-Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
 set background=dark
 colorscheme cosmic_latte
-let g:airline_theme='cosmic_latte_dark'
 " Cursor shape
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
@@ -58,49 +58,58 @@ let &t_EI = "\<Esc>[2 q"
 "endif
 "colorscheme cosmic_latte
 
-"color badwolf
-"let g:airline_theme='kolor'
-"let g:airline_theme='base16'
-
 "Turn off expandtab for editing makefiles
 autocmd FileType make setlocal noexpandtab
 
+""""""""""""""""""""""""""""""""""""""""
+"      lighline configurations         "
+""""""""""""""""""""""""""""""""""""""""
 " Before configuring install the fonts:
 " https://github.com/powerline/fonts
-" air-line
-let g:airline_powerline_fonts = 1
-
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
-let g:airline_extensions = ['branch', 'tabline']
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#right_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
-
-" unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
-
-" airline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
+let g:lightline = {
+  \   'colorscheme': 'cosmic_latte_dark',
+  \   'active': {
+  \     'left':[ [ 'mode', 'paste' ],
+  \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
+  \     ]
+  \   },
+	\   'component': {
+	\     'lineinfo': ' %3l:%-2v',
+	\   },
+  \   'component_function': {
+  \     'gitbranch': 'fugitive#head',
+  \   }
+  \ }
+let g:lightline.separator = {
+	\   'left': '', 'right': ''
+  \}
+let g:lightline.subseparator = {
+	\   'left': '', 'right': '' 
+  \}
+let g:lightline.tabline = {
+  \   'left': [ ['tabs'] ],
+  \   'right': [ ['close'] ]
+  \ }
+" Ale airline configurations
+let g:lightline.component_expand = {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
+let g:lightline.component_type = {
+      \     'linter_checking': 'left',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'left',
+      \ }
+"let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
+let g:lightline#ale#indicator_checking = "\uf110"
+let g:lightline#ale#indicator_warnings = "\uf071"
+let g:lightline#ale#indicator_errors = "\uf05e"
+let g:lightline#ale#indicator_ok = "\uf00c"
+set showtabline=2  " Show tabline
+set guioptions-=e  " Don't use GUI tabline
 
 " Shortcuts
 " Vim tab navigation
@@ -128,10 +137,12 @@ runtime macros/matchit.vim
 " Ale settings
 let g:airline#extensions#ale#enabled = 1
 
-" vim-cpp-enhanced-highlight settings
+"" vim-cpp-enhanced-highlight settings
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
-let g:cpp_experimental_template_highlight = 1
 let c_no_curly_error=1
+
+" Tagbar setting
+nmap <F8> :TagbarToggle<CR>
 
