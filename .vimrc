@@ -28,14 +28,6 @@ Plug 'powerline/fonts'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
 Plug 'majutsushi/tagbar'
-" lh plugins
-Plug 'LucHermitte/lh-vim-lib'
-Plug 'LucHermitte/lh-style'
-Plug 'LucHermitte/lh-brackets'
-Plug 'LucHermitte/mu-template'
-Plug 'LucHermitte/lh-dev'
-Plug 'LucHermitte/alternate-lite'
-Plug 'luchermitte/lh-cpp'
 " Color Themes
 Plug 'nightsense/cosmic_latte'
 
