@@ -11,9 +11,9 @@ set noshowmode
 set laststatus=2
 
 syntax on
-set termguicolors
-"let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-"let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+"set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 """ Vim Plugs """
 call plug#begin('~/.vim/plugged')
@@ -21,12 +21,15 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'Valloric/YouCompleteMe'
 Plug 'w0rp/ale'
-Plug 'itchyny/lightline.vim'
-Plug 'maximbaz/lightline-ale'
+"Plug 'itchyny/lightline.vim'
+"Plug 'maximbaz/lightline-ale'
+Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
 Plug 'powerline/fonts'
 Plug 'xolox/vim-misc'
-Plug 'xolox/vim-easytags'
+Plug 'dylanaraps/wal.vim'
+Plug 'szw/vim-tags'
+"Plug 'xolox/vim-easytags'
 Plug 'majutsushi/tagbar'
 " Color Themes
 Plug 'nightsense/cosmic_latte'
@@ -35,20 +38,13 @@ call plug#end()
 
 set background=dark
 colorscheme cosmic_latte
+"colorscheme wal
 " Cursor shape
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 
-"if strftime('%H') >= 7 && strftime('%H') < 18
-"  set background=light
-"  let g:airline_theme='cosmic_latte_light'
-"  let g:lightline = { 'colorscheme': 'cosmic_latte_light' }
-"else
-"  set background=dark
-"  let g:airline_theme='cosmic_latte_dark'
-"endif
-"colorscheme cosmic_latte
+colorscheme wal
 
 "Turn off expandtab for editing makefiles
 autocmd FileType make setlocal noexpandtab
@@ -58,48 +54,83 @@ autocmd FileType make setlocal noexpandtab
 """"""""""""""""""""""""""""""""""""""""
 " Before configuring install the fonts:
 " https://github.com/powerline/fonts
-let g:lightline = {
-  \   'colorscheme': 'cosmic_latte_dark',
-  \   'active': {
-  \     'left':[ [ 'mode', 'paste' ],
-  \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
-  \     ]
-  \   },
-	\   'component': {
-	\     'lineinfo': ' %3l:%-2v',
-	\   },
-  \   'component_function': {
-  \     'gitbranch': 'fugitive#head',
-  \   }
-  \ }
-let g:lightline.separator = {
-	\   'left': '', 'right': ''
-  \}
-let g:lightline.subseparator = {
-	\   'left': '', 'right': '' 
-  \}
-let g:lightline.tabline = {
-  \   'left': [ ['tabs'] ],
-  \   'right': [ ['close'] ]
-  \ }
+"let g:lightline = {
+"  \   'colorscheme': 'cosmic_latte_dark',
+"  \   'active': {
+"  \     'left':[ [ 'mode', 'paste' ],
+"  \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
+"  \     ]
+"  \   },
+"	\   'component': {
+"	\     'lineinfo': ' %3l:%-2v',
+"	\   },
+"  \   'component_function': {
+"  \     'gitbranch': 'fugitive#head',
+"  \   }
+"  \ }
+"let g:lightline.separator = {
+"	\   'left': '', 'right': ''
+"  \}
+"let g:lightline.subseparator = {
+"	\   'left': '', 'right': '' 
+"  \}
+"let g:lightline.tabline = {
+"  \   'left': [ ['tabs'] ],
+"  \   'right': [ ['close'] ]
+"  \ }
+""""""""""""""""""""""""""""""
+" Airline Configurations
+""""""""""""""""""""""""""""""
+let g:airline_extensions = ['branch', 'tabline']
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#right_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
+
+" unicode symbols
+let g:airline_symbols = {}
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+""""""""""""""""""""""""""""""
 " Ale airline configurations
-let g:lightline.component_expand = {
-      \  'linter_checking': 'lightline#ale#checking',
-      \  'linter_warnings': 'lightline#ale#warnings',
-      \  'linter_errors': 'lightline#ale#errors',
-      \  'linter_ok': 'lightline#ale#ok',
-      \ }
-let g:lightline.component_type = {
-      \     'linter_checking': 'left',
-      \     'linter_warnings': 'warning',
-      \     'linter_errors': 'error',
-      \     'linter_ok': 'left',
-      \ }
-"let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
-let g:lightline#ale#indicator_checking = "\uf110"
-let g:lightline#ale#indicator_warnings = "\uf071"
-let g:lightline#ale#indicator_errors = "\uf05e"
-let g:lightline#ale#indicator_ok = "\uf00c"
+""""""""""""""""""""""""""""""
+"let g:lightline.component_expand = {
+"      \  'linter_checking': 'lightline#ale#checking',
+"      \  'linter_warnings': 'lightline#ale#warnings',
+"      \  'linter_errors': 'lightline#ale#errors',
+"      \  'linter_ok': 'lightline#ale#ok',
+"      \ }
+"let g:lightline.component_type = {
+"      \     'linter_checking': 'left',
+"      \     'linter_warnings': 'warning',
+"      \     'linter_errors': 'error',
+"      \     'linter_ok': 'left',
+"      \ }
+""let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
+"let g:lightline#ale#indicator_checking = "\uf110"
+"let g:lightline#ale#indicator_warnings = "\uf071"
+"let g:lightline#ale#indicator_errors = "\uf05e"
+"let g:lightline#ale#indicator_ok = "\uf00c"
+
 set showtabline=2  " Show tabline
 set guioptions-=e  " Don't use GUI tabline
 

@@ -1,6 +1,14 @@
 #!/bin/bash
 
-sudo pacman -Syu
+sudo pacman -Sy
+# Installing browser, cmake to use with spotify, etc
+sudo pacman -S firefox cmake telegram-desktop
+# polybar dependencies
+sudo pacman -S cairo libxcb xcb-proto xcb-util-image xcb-util-wm
+# polybar optional dependencies
+sudo pacman -S xcb-util-cursor xcb-util-xrm
+# .. for extended module support
+sudo pacman -S alsa-lib libpulse jsoncpp libmpdclient curl wireless_tools
 
 cd $HOME
 mkdir Codes
@@ -17,7 +25,6 @@ makepkg -sri
 timedatectl set-ntp true
 
 # Installing telegram, firefox
-sudo pacman -S telegram-desktop
 sudo pacman -S firefox cmake rofi polybar
 
 
