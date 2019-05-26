@@ -30,6 +30,8 @@ Plug 'xolox/vim-easytags'
 Plug 'majutsushi/tagbar'
 Plug 'honza/vim-snippets'
 Plug 'dylanaraps/wal.vim'
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'vim-scripts/DoxygenToolkit.vim'
 " lh plugins
 "Plug 'LucHermitte/lh-vim-lib'
 "Plug 'LucHermitte/lh-style'
