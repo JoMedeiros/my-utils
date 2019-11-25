@@ -9,9 +9,11 @@ set foldmethod=indent
 set foldlevel=20
 set noshowmode
 set laststatus=2
+set mouse=a
+set encoding=UTF-8
 
 syntax on
-"set termguicolors
+set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
@@ -19,23 +21,44 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Valloric/YouCompleteMe'
 Plug 'w0rp/ale'
 Plug 'vim-scripts/DoxygenToolkit.vim'
-"Plug 'itchyny/lightline.vim'
-"Plug 'maximbaz/lightline-ale'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
 Plug 'powerline/fonts'
 Plug 'xolox/vim-misc'
 Plug 'dylanaraps/wal.vim'
 Plug 'szw/vim-tags'
-"Plug 'xolox/vim-easytags'
+Plug 'xolox/vim-easytags'
 Plug 'majutsushi/tagbar'
+Plug 'ryanoasis/vim-devicons'
+Plug 'trusktr/seti.vim'
+Plug 'Shougo/deoplete.nvim'
+"Plug 'roxma/nvim-yarp'
+"Plug 'roxma/vim-hug-neovim-rpc'
 " Color Themes
 Plug 'nightsense/cosmic_latte'
 
 call plug#end()
+
+"let g:deoplete#enable_at_startup = 1
+let g:ale_c_parse_makefile = 1
+let g:ale_c_gcc_options = '-std=c17 -Wall -I./include'
+
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
 
 set background=dark
 colorscheme cosmic_latte
@@ -44,8 +67,6 @@ colorscheme cosmic_latte
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
-
-colorscheme wal
 
 "Turn off expandtab for editing makefiles
 autocmd FileType make setlocal noexpandtab
@@ -86,6 +107,7 @@ let g:airline_extensions = ['branch', 'tabline']
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#right_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
+let g:airline_theme='cosmic_latte_dark'
 
 " unicode symbols
 let g:airline_symbols = {}

@@ -7,5 +7,6 @@ wget -P ~/.vim/autoload https://raw.githubusercontent.com/junegunn/vim-plug/mast
 # Run the scripts
 vim +'PlugInstall --sync' +qa
 ~/.vim/plugged/YouCompleteMe/install.py --clang-completer
+sudo apt install ycmd
 ~/.vim/plugged/fonts/install.sh
 

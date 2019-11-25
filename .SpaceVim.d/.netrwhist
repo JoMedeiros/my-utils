@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/show/Codes/testes_spacevim'
+let g:netrw_dirhist_2='/home/show'
+let g:netrw_dirhist_3='/home/show/Codes/testes_spacevim'
+let g:netrw_dirhist_4='/home/show/Codes/testes_spacevim/src'
+let g:netrw_dirhist_5='/home/show/Codes/testes_spacevim'
